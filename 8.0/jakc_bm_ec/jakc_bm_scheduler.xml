@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<openerp>  	
+	<data>		
+		<record forcecreate="True" id="ir_cron_saving_monthly_billing_action" model="ir.cron">
+			<field name="name">Cooperation Saving Monthly Billing</field>
+			<field name="active">False</field>
+			<field name="user_id">1</field>
+			<field name="interval_number">1</field>
+			<field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+			<field name="doall">False</field>
+			<field name="model">coop.saving.transaction</field>
+			<field name="function">monthly_billing</field>
+		</record>		
+	</data>
+</openerp>

@@ -1,0 +1,5 @@
+<openerp>
+    <data>
+        <menuitem id="bm_report_menu" name="Report" parent="base.bm_report_menu"  action="action_bm_report_form" sequence="1"/>
+    </data>
+</openerp>

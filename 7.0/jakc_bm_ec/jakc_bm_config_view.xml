@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+	    <record id="view_bm_config_settings" model="ir.ui.view">
+	        <field name="name">Building Management Settings</field>
+	        <field name="model">bm.config.settings</field>
+	        <field name="arch" type="xml">
+	            <form string="Configure Building Management" version="7.0" class="oe_form_configuration">
+	                <header>
+	                    <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+	                    or
+	                    <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+	                </header>
+	                 <div name="bm.settings">
+	                    <separator string="General Configuration"/>
+	     				<group name="Building Management">
+	     					<group>
+	     					    <field name="erp_server"/>
+	     					</group>
+	     				</group>
+                        <separator string="Email Configuration"/>
+	     				<group name="Redemption">
+	     					<group>
+	     						<field name="enable_email"/>
+	     						<field name="email_from"/>
+	     					</group>
+	     				</group>
+	     				<separator string="Report Configuration"/>
+	     				<group name="Building Management">
+	     					<group>
+	     						<field name="report_server"/>
+	     						<field name="report_server_port"/>
+	     						<field name="report_user"/>
+	     						<field name="report_password"/>
+	     					</group>
+	     				</group>       
+	     			</div>	       
+	            </form>
+	        </field>
+	    </record>
+	
+	
+	    <record id="action_bm_config" model="ir.actions.act_window">
+	        <field name="name">Building Management Settings</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">bm.config.settings</field>
+	        <field name="view_mode">form</field>
+	        <field name="target">inline</field>
+	    </record>
+
+
+	</data>
+
+</openerp>

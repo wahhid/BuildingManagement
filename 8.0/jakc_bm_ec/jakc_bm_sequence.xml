@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<openerp>
+    <data>
+        <record model="ir.sequence.type" id="loan_transaction_code_type_sequence">
+            <field name="name">Cooperation Loan Transaction Code Type Sequence</field>
+            <field name="code">coop.loan.transaction.sequence</field>
+        </record>
+        <record model="ir.sequence" id="loan_transaction_code_sequence">
+            <field name="name">Cooperation Loan Transaction Code Sequence</field>
+            <field name="code">coop.loan.transaction.sequence</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">LOA/%(y)/</field>
+            <field name="number_increment">1</field>     
+            <field name="padding">5</field>       
+            <field name="implementation">standard</field>
+        </record>
+                         
+	</data>
+</openerp>

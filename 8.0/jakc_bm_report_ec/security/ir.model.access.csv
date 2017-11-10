@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rdm_report_manager,rdm.report.manager,model_rdm_report,base.group_rdm_manager,1,1,1,1
+access_rdm_report_officer,rdm.report.officer,model_rdm_report,base.group_rdm_officer,1,1,1,0
+access_rdm_report_operator,rdm.report.operator,model_rdm_report,base.group_rdm_operator,1,1,1,0

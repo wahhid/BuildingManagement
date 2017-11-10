@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<openerp>
+    <data>
+        <!-- BM/CUSTOMER -->				
+		        <record id="view_bm_customer_form_inherit_res_partner" model="ir.ui.view">
+		            <field name="name">bm.customer.form.inherit.res.partner</field>
+		            <field name="model">res.partner</field>
+		            <field name="type">form</field>
+		            <field name="inherit_id" ref="base.view_partner_form"/>					
+		            <field name="arch" type="xml">	
+		                <field name="name" position="after">
+		                    <field name="trade_name"/>
+		                    <field name="customer_code"/>		                    
+		                </field>	               		                
+		                <notebook position="inside">		                    
+		                    <page string="Lease">		                        
+		                    	<field name="lease_transaction_ids">
+		                    	    	<tree>
+					                        <field name="trans_date"/>	                        
+					                        <field name="res_partner_id"/>
+					                        <field name="term_of_lease"/>
+					                        <field name="option_period"/>
+					                        <field name="rate_of_commission"/>	                        
+					                        <field name="lease_of_comm"/>
+					                        <field name="rent_of_comm"/>
+					                        <field name="lease_expiration"/>
+					                        <field name="state"/>                            		                    	    	    		                    	    	    		                    	    	    
+		                    	    	</tree>
+		                    	</field>	                    			                    
+		                    </page>
+		                </notebook>			
+		            </field>
+		        </record>
+				
+        <record model="ir.ui.view" id="view_coop_customer_tree">
+            <field name="name">coop.customer.tree</field>
+            <field name="model">res.partner</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Customer">
+                    <field name="trade_name"/>                    		                    
+                </tree>
+            </field>
+        </record>
+        
+        <!-- BM/TENANT CATEGORY-->        			
+        <record model="ir.ui.view" id="view_bm_tenant_category_form">
+            <field name="name">bm.tenant.category.form</field>
+            <field name="model">bm.tenant.category</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Lot" version="7.0">
+                	<sheet>
+	                    <group>                            
+	                        <field name="name"/>
+	                    </group>	                		                	
+                	</sheet>  
+                </form>
+            </field>
+        </record>
+        
+ 		<record model="ir.ui.view" id="view_bm_tenant_category_tree">
+            <field name="name">bm.tenant.category.tree</field>
+            <field name="model">bm.tenant.category</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Tenant Category">
+	                        <field name="name"/>	                        
+                </tree>
+            </field>
+        </record>        
+        
+                              
+        <!-- BM/ACTION -->
+        <!-- LOT -->        
+		<record model="ir.actions.act_window" id="action_bm_tenant_category">
+            <field name="name">Tenant Category</field>
+            <field name="res_model">bm.tenant.category</field>
+            <field name="view_mode">tree,form</field>                        
+        </record>
+                                      
+        
+        <!-- CUSTOMER -->        
+		<record model="ir.actions.act_window" id="action_bm_customer">
+            <field name="name">Customer</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>                        
+        </record>
+
+                                                                                                                                                                                                                                                                                                                  	
+    </data>                
+</openerp>

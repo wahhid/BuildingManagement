@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<openerp>
+    <data>
+        <!-- BM/LOT-->				
+        <record model="ir.ui.view" id="view_bm_lot_form">
+            <field name="name">bm.lot.form</field>
+            <field name="model">bm.lot</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Lot" version="7.0">
+                	<sheet>
+	                    <group>                            
+	                        <field name="name"/>
+	                        <field name="lettable_area"/>
+	                        <field name="rental_charge"/>
+	                        <field name="service_charge"/>
+	                        <field name="promotion_levy"/>
+	                        <field name="state"/>                            
+	                    </group>	                		                	
+                	</sheet>  
+                </form>
+            </field>
+        </record>
+        
+		<record model="ir.ui.view" id="view_bm_lot_transaction_tree">
+            <field name="name">bm.lot.tree</field>
+            <field name="model">bm.lot</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Lot">
+	          		<field name="name"/>
+					<field name="lettable_area"/>
+					<field name="rental_charge"/>
+					<field name="service_charge"/>
+					<field name="promotion_levy"/>
+					<field name="state"/>                    
+                </tree>
+            </field>
+        </record>        
+                              
+        <!-- BM/ACTION -->
+        <!-- LOT -->
+        
+		<record model="ir.actions.act_window" id="action_bm_lot">
+            <field name="name">Lot</field>
+            <field name="res_model">bm.lot</field>
+            <field name="view_mode">tree,form</field>                        
+        </record>
+                                                                                                                                                                                                                                                                                                                          	
+    </data>                
+</openerp>

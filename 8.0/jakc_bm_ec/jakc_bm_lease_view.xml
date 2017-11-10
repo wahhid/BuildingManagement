@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<openerp>
+    <data>
+        <!-- BM/LEASE TRANSACTION -->				
+        <record model="ir.ui.view" id="view_bm_lease_transaction_form">
+            <field name="name">bm.lease.transaction.form</field>
+            <field name="model">bm.lease.transaction</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Lease Transaction" version="7.0">
+					<header>					    
+					    <button name="trans_open" string="Set Active" type="object" class="oe_highlight" states="draft"/>
+					    <button name="trans_cancel" string="Set Non Active" type="object" class="oe_highlight" states="open"/>
+                        <button name="trans_terminated" string="Terminated" type="object" class="oe_highlight" states="open" confirm="Are you sure to terminated this transaction?"/>
+                        <button name="trans_notol" string="Notol" type="object" class="oe_highlight" states="open" confirm="Are you sure to notol this transaction?"/>
+                        <button name="trans_close" string="Close" type="object" class="oe_highlight" states="open" confirm="Are you sure to close this transaction?"/>	                                                                                              
+					</header>                                          
+                	<sheet>
+	                    <group>                            
+	                        <field name="trans_date"/>	  
+	                        <field name="trans_code"/>	                        
+	                        <field name="res_partner_id"/>
+	                        <field name="sales_id"/>
+	                        <field name="term_of_lease"/>
+	                        <field name="down_payment"/>
+	                        <field name="option_period"/>
+	                        <field name="rate_of_commission"/>	                        
+	                        <field name="lease_of_comm"/>
+	                        <field name="rent_of_comm"/>
+	                        <field name="lease_expiration"/>
+	                        <field name="rent_revision"/>
+							<field name="dep_rental"/>
+	                        <field name="dep_parking"/>
+	                        <field name="dep_telephone"/>	  
+	                        <field name="state"/>	                        	                                                  
+	                    </group>	                		   
+	                    <notebook>
+	                    	<page string="Lot">
+	                    	    <field name="lot_ids">
+	                    	        <tree>
+	                    	        	<field name="lot_id"/>	                    	        	   
+	                    	        	<field name="lettable_area"/>
+				                        <field name="rental_charge"/>
+				                        <field name="service_charge"/>
+				                        <field name="promotion_levy"/>
+	                    	        </tree>	                    	        	                    	        										                    	                    	       
+	                    	    </field>
+	                    	</page>
+	                    	<page string="Rate">
+	                    	    <field name="rate_ids">
+	                    	        <tree>
+	                    	            <field name="start_date"/>
+	                    	            <field name="end_date"/>
+	                    	            <field name="rate"/>
+	                    	            <field name="rupiah"/>
+	                    	        </tree>
+	                    	    </field>
+	                    	</page>
+	                    </notebook>             	
+                	</sheet>  
+                	<div class="oe_chatter">
+            			<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+            			<field name="message_ids" widget="mail_thread"/>
+        			</div>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_bm_lease_transaction_tree">
+            <field name="name">bm.lease.transaction.tree</field>
+            <field name="model">bm.lease.transaction</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Lease Transaction">
+					<field name="trans_date"/>	  
+					<field name="trans_code"/>                      
+					<field name="res_partner_id"/>
+					<field name="sales_id"/>
+					<field name="term_of_lease"/>
+					<field name="down_payment"/>
+					<field name="lease_of_comm"/>
+					<field name="rent_of_comm"/>
+					<field name="lease_expiration"/>	                        
+					<field name="dep_rental"/>
+					<field name="dep_parking"/>
+					<field name="dep_telephone"/>
+					<field name="state"/>                            
+                </tree>
+            </field>
+        </record>
+        
+		<record model="ir.ui.view" id="view_bm_lease_transaction_filter">
+            <field name="name">bm.lease.transaction.select</field>
+            <field name="model">bm.lease.transaction</field>
+            <field name="arch" type="xml">
+                <search string="Search Lease Transaction">				   
+				   <field name="trans_code"/>              	
+                   <field name="res_partner_id"/>                                     
+				   <field name="sales_id"/>
+				   <field name="lease_of_comm"/>
+				   <field name="lease_expiration"/>                   	
+                   <separator/>
+                   <filter string="New" name="new_lease_transaction" domain="[('state','=','draft')]"/>
+                   <filter string="Open" name="open_lease_transaction" domain="[('state','=','open')]"/>
+                   <filter string="Close" name="close_lease_transaction" domain="[('state','=','done')]"/>
+               </search>
+            </field>
+        </record>   
+                
+		<!-- BM/LEASE LOT -->				
+        <record model="ir.ui.view" id="view_bm_lease_lot_form">
+            <field name="name">bm.lease.lot.form</field>
+            <field name="model">bm.lease.lot</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Lease Lot" version="7.0">
+                	<sheet>
+	                    <group>                          
+	                        <field name="lot_id" on_change="onchange_lot_id(lot_id)"/>	                        	                       
+	                      	<field name="lettable_area"/>
+				          	<field name="rental_charge"/>
+							<field name="service_charge"/>
+							<field name="promotion_levy"/>                                    	                                                
+	                    </group>	                		   
+	                </sheet>
+                </form>
+            </field>
+        </record>   
+        
+        <!-- BM/LEASE RATE -->				
+        <record model="ir.ui.view" id="view_bm_lease_rate_form">
+            <field name="name">bm.lease.rate.form</field>
+            <field name="model">bm.lease.rate</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Lease Rate" version="7.0">
+                	<sheet>
+	                    <group>                          
+	                        <field name="start_date"/>	                        
+	                      	<field name="end_date"/>
+				          	<field name="rate"/>
+				          	<field name="rupiah"/>
+	                    </group>	                		   
+	                </sheet>
+                </form>
+            </field>
+        </record> 
+                              
+        <!-- COOPERATION/ACTION -->
+		<!-- LEASE TRANSACTION -->
+        <record model="ir.actions.act_window" id="action_bm_lease_transaction">
+            <field name="name">Lease Transaction</field>
+            <field name="res_model">bm.lease.transaction</field>
+            <field name="view_mode">tree,form</field>        
+           	<field name="context">{"search_default_new_lease_transaction":1,"search_default_open_lease_transaction":1}</field>            
+           	<field name="search_view_id" ref="view_bm_lease_transaction_filter"/> 
+        </record>
+                                                                                                                                                                                                                                                                                                                          	
+    </data>                
+</openerp>

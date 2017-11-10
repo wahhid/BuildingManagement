@@ -1,0 +1,5 @@
+<openerp>
+    <data>
+        <menuitem id="bm_config" name="Building Management Settings" parent="base.menu_config" sequence="17" action="action_bm_config"/>
+    </data>
+</openerp>

@@ -1,0 +1,23 @@
+<openerp>
+    <data>
+        <menuitem name="Building Management" id="bm_main_menu" />			
+		<menuitem name="General" id="base.bm_general_menu" parent="bm_main_menu"/>
+		<menuitem name="Master" id="base.bm_master_menu" parent="bm_main_menu"/>
+		<menuitem name="Lease" id="base.bm_lease_menu" parent="bm_main_menu"/>		
+		<menuitem name="Report" id="base.bm_report_menu" parent="bm_main_menu"/>
+					     		       
+        	                               	               	              
+        <!-- RETAIL/MENU -->
+        <!-- GENERAL -->    	       
+        <menuitem id="bm_tenant_category_menu" name="Tenant Category" parent="base.bm_general_menu"  action="action_bm_tenant_category" sequence="1"/>
+        
+        <!-- MASTER -->
+        <menuitem id="bm_customer_menu" name="Tenant" parent="base.bm_master_menu"  action="action_bm_customer" sequence="1"/>
+        <menuitem id="bm_lot_menu" name="Lot" parent="base.bm_master_menu"  action="action_bm_lot" sequence="2"/>
+                                              
+        <!-- LEASE -->       
+        <menuitem id="bm_lease_transaction_menu" name="Transaction" parent="base.bm_lease_menu"  action="action_bm_lease_transaction" sequence="1"/>
+                                     
+        
+    </data>
+</openerp>
