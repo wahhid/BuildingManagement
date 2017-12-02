@@ -3,7 +3,9 @@
         <menuitem name="Building Management" id="bm_main_menu" />			
 		<menuitem name="General" id="base.bm_general_menu" parent="bm_main_menu"/>
 		<menuitem name="Master" id="base.bm_master_menu" parent="bm_main_menu"/>
-		<menuitem name="Lease" id="base.bm_lease_menu" parent="bm_main_menu"/>		
+		<menuitem name="Lease" id="base.bm_lease_menu" parent="bm_main_menu"/>
+        <menuitem name="Agreement" id="base.bm_agreement_menu" parent="bm_main_menu"/>
+        <menuitem name="Inquiries" id="base.bm_tenant_inquiries_menu" parent="bm_main_menu"/>
 		<menuitem name="Report" id="base.bm_report_menu" parent="bm_main_menu"/>
 					     		       
         	                               	               	              
@@ -17,7 +19,9 @@
                                               
         <!-- LEASE -->       
         <menuitem id="bm_lease_transaction_menu" name="Transaction" parent="base.bm_lease_menu"  action="action_bm_lease_transaction" sequence="1"/>
-                                     
-        
+
+        <!-- INQUIRIES -->
+        <menuitem id="bm_tenant_inquiries_menu" name="Inquiries" parent="base.bm_tenant_inquiries_menu"  action="action_bm_tenant_inquiries" sequence="1"/>
+
     </data>
 </openerp>

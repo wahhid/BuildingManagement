@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<openerp>
+    <data>
+        <!-- BM/LEASE AGREEMENT -->
+        <record model="ir.ui.view" id="view_bm_agreement_form">
+            <field name="name">bm.agreement.form</field>
+            <field name="model">bm.agreement</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Lease Lot" version="7.0">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                	<sheet>
+	                    <group>
+                            <field name="trans_no"/>
+                            <field name="name"/>
+	                        <field name="partner_id"/>
+				          	<field name="agreement_date_signed"/>
+							<field name="agreement_remark"/>
+	                    </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- BM/LEASE RATE -->
+        <record model="ir.ui.view" id="view_bm_agreement_tree">
+            <field name="name">bm.agreement.tree</field>
+            <field name="model">bm.agreement</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Agreement">
+                    <field name="trans_no"/>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="agreement_date_signed"/>
+                    <field name="agreement_remark"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- BM/ACTION -->
+		<!-- AGREEMENT -->
+        <record model="ir.actions.act_window" id="action_bm_agreement">
+            <field name="name">Agreement</field>
+            <field name="res_model">bm.agreement</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>                
+</openerp>

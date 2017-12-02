@@ -65,11 +65,49 @@
             <field name="type">tree</field>						
             <field name="arch" type="xml">
                 <tree string="Tenant Category">
-	                        <field name="name"/>	                        
+					<field name="name"/>
                 </tree>
             </field>
         </record>        
-        
+
+        <!-- BM/TENANT INQUIRIES-->
+        <record model="ir.ui.view" id="view_bm_tenant_inquiries_form">
+            <field name="name">bm.tenant.inquiries.form</field>
+            <field name="model">bm.tenant.inquiries</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Tenant Inquiries" version="7.0">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                	<sheet>
+	                    <group>
+	                        <field name="trans_no"/>
+                            <field name="name"/>
+                            <field name="trans_date"/>
+                            <field name="phone"/>
+                            <field name="completion_date"/>
+	                    </group>
+                	</sheet>
+                </form>
+            </field>
+        </record>
+
+ 		<record model="ir.ui.view" id="view_bm_tenant_inquiries_tree">
+            <field name="name">bm.tenant.inquiries.tree</field>
+            <field name="model">bm.tenant.inquiries</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Tenant Inquiries">
+					<field name="trans_no"/>
+                    <field name="name"/>
+                    <field name="trans_date"/>
+                    <field name="phone"/>
+                    <field name="completion_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
                               
         <!-- BM/ACTION -->
         <!-- LOT -->        
@@ -79,7 +117,12 @@
             <field name="view_mode">tree,form</field>                        
         </record>
                                       
-        
+        <record model="ir.actions.act_window" id="action_bm_tenant_inquiries">
+            <field name="name">Tenant Inquiries</field>
+            <field name="res_model">bm.tenant.inquiries</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
         <!-- CUSTOMER -->        
 		<record model="ir.actions.act_window" id="action_bm_customer">
             <field name="name">Customer</field>

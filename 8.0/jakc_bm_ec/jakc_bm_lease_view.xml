@@ -56,6 +56,24 @@
 	                    	        </tree>
 	                    	    </field>
 	                    	</page>
+							<page string="Agreement" groups="base.group_bm_la_operator">
+								<group>
+									<separator string="LOI" colspan="4"/>
+									<field name="iface_loi_process"/>
+									<field name="loi_trans_number" attrs="{'invisible':[('iface_loi_process','=',False)]}"/>
+									<field name="loi_date_received" attrs="{'invisible':[('iface_loi_process','=',False)]}"/>
+									<field name="loi_date_agreement_sent" attrs="{'invisible':[('iface_loi_process','=',False)]}"/>
+									<field name="loi_status_agreement_sent" attrs="{'invisible':[('iface_loi_process','=',False)]}"/>
+									<field name="iface_loi_achieved" attrs="{'invisible':[('iface_loi_process','=',False)]}"/>
+									<field name="loi_remark" attrs="{'invisible':[('iface_loi_process','=',False)]}"/>
+									<separator string="Agreement" colspan="4"/>
+									<field name="iface_agreement_process"/>
+									<field name="agreement_trans_number" attrs="{'invisible':[('iface_agreement_process','=',False)]}"/>
+									<field name="agreement_date_signed" attrs="{'invisible':[('iface_agreement_process','=',False)]}"/>
+									<field name="iface_agreement_achieved" attrs="{'invisible':[('iface_agreement_process','=',False)]}"/>
+									<field name="agreement_remark" attrs="{'invisible':[('iface_agreement_process','=',False)]}"/>
+								</group>
+							</page>
 	                    </notebook>             	
                 	</sheet>  
                 	<div class="oe_chatter">
@@ -115,12 +133,12 @@
             <field name="arch" type="xml">
                 <form string="Lease Lot" version="7.0">
                 	<sheet>
-	                    <group>                          
-	                        <field name="lot_id" on_change="onchange_lot_id(lot_id)"/>	                        	                       
+	                    <group>
+	                        <field name="lot_id" on_change="onchange_lot_id(lot_id)"/>
 	                      	<field name="lettable_area"/>
 				          	<field name="rental_charge"/>
 							<field name="service_charge"/>
-							<field name="promotion_levy"/>                                    	                                                
+							<field name="promotion_levy"/>
 	                    </group>	                		   
 	                </sheet>
                 </form>

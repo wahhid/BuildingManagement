@@ -7,6 +7,8 @@ _logger = logging.getLogger(__name__)
 
 AVAILABLE_STATES = [
     ('draft','New'),
+    ('confirm','Confirm'),
+    ('waiting', 'Waiting Agreement'),
     ('open','Open'),    
     ('terminated','Terminated'),
     ('notol','Notol'),    
@@ -86,13 +88,27 @@ class bm_lease_transaction(osv.osv):
         'dep_rental': fields.float('Deposit Rental'),
         'dep_parking': fields.float('Deposit Parking'),
         'dep_telephone': fields.float('Deposit Telephone'),
+        'iface_loi_process': fields.boolean('Loi Process'),
+        'loi_trans_number': fields.char('No #', size=10),
+        'loi_date_received': fields.date('Received'),
+        'loi_date_agreement_sent': fields.date('Agreement Sent'),
+        'loi_status_agreement_sent': fields.boolean('Sent Status'),
+        'iface_loi_achieved': fields.boolean('Achieved'),
+        'loi_remark': fields.text('Remark'),
+        'iface_agreement_process': fields.boolean('Loi Process'),
+        'agreement_trans_number': fields.char('No #', size=10, required=True),
+        'agreement_date_signed': fields.date('Date Signed'),
+        'agreement_remark': fields.text("Remark"),
+        'iface_agreement_achieved': fields.boolean('Achieved'),
         'lot_ids': fields.one2many('bm.lease.lot','lease_trans_id', "Lots"),
-        'rate_ids': fields.one2many('bm.lease.rate','lease_trans_id',"Rates"),        
+        'rate_ids': fields.one2many('bm.lease.rate','lease_trans_id',"Rates"),
         'state': fields.selection(AVAILABLE_STATES, 'Status', required=True, readonly=True),         
     }
     _defaults = {                    
         'state': lambda *a: 'draft', 
         'trans_date': fields.date.context_today,
+        'iface_loi_process': lambda *a: False,
+        'iface_loi_achieved': lambda *a: False,
     }    
     _sql_constraints = [('trans_code_unique', 'unique(trans_code)', 'Transaction code name already exists')]    
         
@@ -187,3 +203,8 @@ class bm_lease_rate(osv.osv):
     }
     
 bm_lease_rate()
+
+AVAILABLE_AGREEMENT_STATES = [
+    ('open', 'Open'),
+    ('done', 'Closed'),
+]
