@@ -96,7 +96,7 @@ class bm_lease_transaction(osv.osv):
         'iface_loi_achieved': fields.boolean('Achieved'),
         'loi_remark': fields.text('Remark'),
         'iface_agreement_process': fields.boolean('Loi Process'),
-        'agreement_trans_number': fields.char('No #', size=10, required=True),
+        'agreement_trans_number': fields.char('No #', size=10, required=False),
         'agreement_date_signed': fields.date('Date Signed'),
         'agreement_remark': fields.text("Remark"),
         'iface_agreement_achieved': fields.boolean('Achieved'),

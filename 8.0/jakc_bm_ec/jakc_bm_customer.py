@@ -53,6 +53,7 @@ class res_partner(osv.osv):
         'tenant_category_id': fields.many2one('bm.tenant.category', 'Tenant Category'),
         'lease_transaction_ids': fields.one2many('bm.lease.transaction', 'res_partner_id', 'Lease Transaction'),
         'agreement_ids': fields.one2many('bm.agreement', 'partner_id', 'Agreements'),
+        'thd_logbook_ids': fields.one2many('bm.thd.logbook','partner_id', 'THD Logbook'),
     }             
     _defaults = {                
         'join_date': fields.date.context_today,            
@@ -88,3 +89,47 @@ class bm_tenant_inquiries(osv.osv):
     }
 
 bm_tenant_inquiries()
+
+
+class bm_thd_logbook(osv.osv):
+    _name = "bm.thd.logbook"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _description = "Building Management THD Logbook"
+
+    def trans_close(self, cr, uid, ids, context=None):
+        self.write(cr, uid, ids, {'state':'done'}, context=context)
+
+    def _get_users(self, cr, uid, context=None):
+        users_ids = []
+        officer_ids = self.search(cr, uid, 'bpl.officer', [('is_user', '=', True)])
+        for record in self.browse(cr, uid, officer_ids, context=context):
+            if record.user_id:
+                users_ids.append(record.user_id.id)
+        return users_ids
+
+    def onchange_partner_id(self, cr, uid, ids, partner_id, context=None):
+        res = {}
+        bm_lease_transaction_obj = self.pool.get('bm.lease.transaction')
+        args = [('partner_id', '=', partner_id),('state','=','open')]
+        ids = bm_lease_transaction_obj.search(cr, uid, [('res_partner_id', '=', partner_id)], context=context)
+        bm_lease_transaction = bm_lease_transaction_obj.browse(cr, uid, ids[0], context=context)
+        lot_ids = []
+        for lot_id in bm_lease_transaction.lot_ids:
+            lot_ids.append(lot_id.lot_id.id)
+        return {'domain': {'lot_id': [('id', 'in', lot_ids)]}}
+
+    _columns = {
+        'trans_no': fields.char('No #', size=10, required=True),
+        'trans_date': fields.date('Date'),
+        'partner_id': fields.many2one('res.partner', 'Tenant', required=True),
+        'name': fields.char('Description', size=200, required=True),
+        'lot_id': fields.many2one('bm.lot', 'Lot #', required=True),
+        'confirm_by': fields.many2one('res.users', 'Confirm By'),
+        'state': fields.selection(AVAILABLE_STATES, 'Status', required=True, readonly=True),
+    }
+    _defaults = {
+        'state': lambda *a: 'open',
+    }
+
+
+bm_thd_logbook()

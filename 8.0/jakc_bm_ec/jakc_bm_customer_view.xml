@@ -83,6 +83,7 @@
                 	<sheet>
 	                    <group>
 	                        <field name="trans_no"/>
+                            <field name="partner_id"/>
                             <field name="name"/>
                             <field name="trans_date"/>
                             <field name="phone"/>
@@ -100,6 +101,7 @@
             <field name="arch" type="xml">
                 <tree string="Tenant Inquiries">
 					<field name="trans_no"/>
+                    <field name="partner_id"/>
                     <field name="name"/>
                     <field name="trans_date"/>
                     <field name="phone"/>
@@ -108,13 +110,55 @@
                 </tree>
             </field>
         </record>
-                              
+
+        <!-- BM/THD LOGBOOK -->
+        <record model="ir.ui.view" id="view_bm_thd_logbook_form">
+            <field name="name">bm.thd.logbook.form</field>
+            <field name="model">bm.thd.logbook</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="THD Logbook" version="7.0">
+                    <header>
+                        <button name="trans_close" string="Close" type="object" class="oe_highlight"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                	<sheet>
+	                    <group>
+                            <field name="trans_no"/>
+                            <field name="trans_date"/>
+	                        <field name="partner_id" on_change="onchange_partner_id(partner_id)"/>
+				          	<field name="lot_id"/>
+                            <field name="name"/>
+                            <field name="confirm_by"/>
+	                    </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- BM/THD LOGBOOK -->
+        <record model="ir.ui.view" id="view_bm_thd_logbook_tree">
+            <field name="name">bm.thd.logbook.tree</field>
+            <field name="model">bm.thd.logbook</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="THD Logbook">
+                    <field name="trans_no"/>
+                    <field name="trans_date"/>
+                    <field name="partner_id"/>
+                    <field name="lot_id"/>
+                    <field name="name"/>
+                    <field name="confirm_by"/>
+                </tree>
+            </field>
+        </record>
+
         <!-- BM/ACTION -->
         <!-- LOT -->        
 		<record model="ir.actions.act_window" id="action_bm_tenant_category">
             <field name="name">Tenant Category</field>
             <field name="res_model">bm.tenant.category</field>
-            <field name="view_mode">tree,form</field>                        
+            <field name="view_mode">tree,form</field>
         </record>
                                       
         <record model="ir.actions.act_window" id="action_bm_tenant_inquiries">
@@ -130,6 +174,12 @@
             <field name="view_mode">tree,form</field>                        
         </record>
 
-                                                                                                                                                                                                                                                                                                                  	
+        <!-- THD LOGBOOK -->
+        <record model="ir.actions.act_window" id="action_bm_thd_logbook">
+            <field name="name">THD Logbook</field>
+            <field name="res_model">bm.thd.logbook</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
     </data>                
 </openerp>
